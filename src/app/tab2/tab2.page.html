@@ -1,0 +1,629 @@
+<ion-header translucent>
+  <ion-toolbar color="dark">
+    <ion-title>Booking Barbershop Mian</ion-title>
+    <ion-buttons slot="end">
+      <ion-button fill="clear" (click)="goToDashboard()">
+        <ion-icon name="home-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen>
+  
+  <!-- Enhanced Hero Section -->
+  <div class="hero-section">
+    <div class="hero-background">
+      <div class="hero-pattern"></div>
+      <div class="floating-elements">
+        <div class="float-element float-1">✂️</div>
+        <div class="float-element float-2">💈</div>
+        <div class="float-element float-3">🪒</div>
+      </div>
+    </div>
+    <div class="hero-content">
+      <div class="hero-icon-container">
+        <ion-icon name="cut-outline" class="hero-main-icon"></ion-icon>
+      </div>
+      <h1 class="hero-title">Booking Mudah & Cepat</h1>
+      <p class="hero-subtitle">Isi data dengan lengkap dan nikmati pengalaman potong rambut terbaik</p>
+      <div class="hero-steps">
+        <div class="step active">1</div>
+        <div class="step-line"></div>
+        <div class="step">2</div>
+        <div class="step-line"></div>
+        <div class="step">3</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-container">
+    
+    <!-- Personal Information Section -->
+    <div class="form-section">
+      <div class="section-header">
+        <ion-icon name="person-outline" class="section-icon"></ion-icon>
+        <div class="section-title">
+          <h3>Informasi Pribadi</h3>
+          <p>Masukkan data diri Anda</p>
+        </div>
+      </div>
+      
+      <div class="input-group">
+        <div class="input-wrapper">
+          <ion-item class="custom-item">
+            <ion-icon name="person-outline" slot="start" class="input-icon"></ion-icon>
+            <ion-label position="floating">Nama Lengkap</ion-label>
+            <ion-input [(ngModel)]="nama" placeholder="Masukkan nama lengkap"></ion-input>
+          </ion-item>
+        </div>
+        
+        <div class="input-wrapper">
+          <ion-item class="custom-item">
+            <ion-icon name="call-outline" slot="start" class="input-icon"></ion-icon>
+            <ion-label position="floating">Nomor Telepon</ion-label>
+            <ion-input [(ngModel)]="telepon" type="tel" placeholder="08xxxxxxxxxx"></ion-input>
+          </ion-item>
+        </div>
+        
+        <div class="input-wrapper">
+          <ion-item class="custom-item">
+            <ion-icon name="mail-outline" slot="start" class="input-icon"></ion-icon>
+            <ion-label position="floating">Email (Opsional)</ion-label>
+            <ion-input [(ngModel)]="email" type="email" placeholder="email@example.com"></ion-input>
+          </ion-item>
+        </div>
+      </div>
+    </div>
+
+    <!-- Service Selection Section -->
+    <div class="form-section">
+      <div class="section-header">
+        <ion-icon name="cut-outline" class="section-icon"></ion-icon>
+        <div class="section-title">
+          <h3>Pilihan Layanan</h3>
+          <p>Pilih barber dan paket yang diinginkan</p>
+        </div>
+      </div>
+      
+      <div class="input-group">
+        <div class="input-wrapper">
+          <ion-item class="custom-item">
+            <ion-icon name="person-circle-outline" slot="start" class="input-icon"></ion-icon>
+            <ion-label position="stacked">Pilih Tukang Cukur</ion-label>
+            <ion-select placeholder="Pilih Tukang Cukur" [(ngModel)]="barber" interface="popover">
+              <ion-select-option value="Ali">
+                <div class="barber-option">
+                  <strong>Ali</strong> - Specialist Fade & Modern Cut
+                </div>
+              </ion-select-option>
+              <ion-select-option value="Budi">
+                <div class="barber-option">
+                  <strong>Budi</strong> - Expert Classic & Beard Trim
+                </div>
+              </ion-select-option>
+              <ion-select-option value="Candra">
+                <div class="barber-option">
+                  <strong>Candra</strong> - Master Traditional & Kids Cut
+                </div>
+              </ion-select-option>
+            </ion-select>
+          </ion-item>
+        </div>
+        
+        <div class="input-wrapper">
+          <ion-item class="custom-item">
+            <ion-icon name="layers-outline" slot="start" class="input-icon"></ion-icon>
+            <ion-label position="stacked">Paket Layanan</ion-label>
+            <ion-select placeholder="Pilih Paket" [(ngModel)]="paket" interface="popover">
+              <ion-select-option value="Cukur Rambut">
+                <div class="service-option">
+                  <strong>Cukur Rambut</strong> - Rp 25.000
+                </div>
+              </ion-select-option>
+              <ion-select-option value="Cukur + Cuci">
+                <div class="service-option">
+                  <strong>Cukur + Cuci</strong> - Rp 35.000
+                </div>
+              </ion-select-option>
+              <ion-select-option value="Cukur + Facial">
+                <div class="service-option">
+                  <strong>Cukur + Facial</strong> - Rp 45.000
+                </div>
+              </ion-select-option>
+              <ion-select-option value="Cukur Anak">
+                <div class="service-option">
+                  <strong>Cukur Anak</strong> - Rp 20.000
+                </div>
+              </ion-select-option>
+            </ion-select>
+          </ion-item>
+        </div>
+      </div>
+    </div>
+
+    <!-- Schedule Section -->
+    <div class="form-section">
+      <div class="section-header">
+        <ion-icon name="calendar-outline" class="section-icon"></ion-icon>
+        <div class="section-title">
+          <h3>Jadwal Booking</h3>
+          <p>Pilih tanggal dan waktu yang sesuai</p>
+        </div>
+      </div>
+      
+      <div class="input-group">
+        <div class="datetime-group">
+          <div class="input-wrapper">
+            <ion-item class="custom-item">
+              <ion-icon name="calendar-outline" slot="start" class="input-icon"></ion-icon>
+              <ion-label position="stacked">Tanggal Booking</ion-label>
+              <ion-datetime presentation="date" [(ngModel)]="tanggal" class="custom-datetime"></ion-datetime>
+            </ion-item>
+          </div>
+          
+          <div class="input-wrapper">
+            <ion-item class="custom-item">
+              <ion-icon name="time-outline" slot="start" class="input-icon"></ion-icon>
+              <ion-label position="stacked">Jam Booking</ion-label>
+              <ion-datetime presentation="time" hour-cycle="h23" [(ngModel)]="jam" class="custom-datetime"></ion-datetime>
+            </ion-item>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Additional Options Section -->
+    <div class="form-section">
+      <div class="section-header">
+        <ion-icon name="options-outline" class="section-icon"></ion-icon>
+        <div class="section-title">
+          <h3>Opsi Tambahan</h3>
+          <p>Pengaturan dan preferensi lainnya</p>
+        </div>
+      </div>
+      
+      <div class="input-group">
+        <div class="toggle-wrapper">
+          <ion-item class="custom-item toggle-item">
+            <ion-icon name="logo-whatsapp" slot="start" class="input-icon whatsapp-icon"></ion-icon>
+            <ion-label>
+              <h3>Reminder WhatsApp</h3>
+              <p>Dapatkan pengingat sebelum jadwal</p>
+            </ion-label>
+            <ion-toggle [(ngModel)]="ingatkanWA" color="success" slot="end"></ion-toggle>
+          </ion-item>
+        </div>
+        
+        <div class="input-wrapper">
+          <ion-item class="custom-item">
+            <ion-icon name="chatbubble-outline" slot="start" class="input-icon"></ion-icon>
+            <ion-label position="floating">Catatan Khusus (Opsional)</ion-label>
+            <ion-textarea 
+              [(ngModel)]="catatan" 
+              placeholder="Masukkan permintaan khusus..."
+              auto-grow="true"
+              rows="3">
+            </ion-textarea>
+          </ion-item>
+        </div>
+        
+        <div class="rating-wrapper">
+          <ion-item class="custom-item rating-item">
+            <ion-icon name="star-outline" slot="start" class="input-icon"></ion-icon>
+            <ion-label>
+              <h3>Harapan Rating Layanan</h3>
+              <p>Berikan ekspektasi Anda</p>
+            </ion-label>
+            <div class="rating-container">
+              <ion-range 
+                min="1" 
+                max="5" 
+                pin="true" 
+                [(ngModel)]="rating"
+                color="warning">
+                <ion-icon slot="start" name="star-outline" class="rating-icon"></ion-icon>
+                <ion-icon slot="end" name="star" class="rating-icon"></ion-icon>
+              </ion-range>
+            </div>
+          </ion-item>
+        </div>
+      </div>
+    </div>
+
+    <!-- Submit Section -->
+    <div class="submit-section">
+      <div class="progress-wrapper" *ngIf="loading">
+        <ion-progress-bar type="indeterminate" color="primary"></ion-progress-bar>
+        <p class="loading-text">Sedang memproses booking...</p>
+      </div>
+      
+      <ion-button 
+        expand="block" 
+        color="primary" 
+        size="large" 
+        (click)="addBooking()"
+        class="submit-button"
+        [disabled]="loading">
+        <ion-icon name="checkmark-circle-outline" slot="start"></ion-icon>
+        <span *ngIf="!loading">Konfirmasi Booking</span>
+        <span *ngIf="loading">Memproses...</span>
+      </ion-button>
+      
+      <div class="terms-text">
+        <p>Dengan melanjutkan, Anda menyetujui <strong>syarat dan ketentuan</strong> layanan kami</p>
+      </div>
+    </div>
+
+  </div>
+
+</ion-content>
+
+<style>
+  /* Hero Section Enhanced */
+  .hero-section {
+    position: relative;
+    height: 320px;
+    overflow: hidden;
+    margin-bottom: 20px;
+  }
+
+  .hero-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #2c3e50 0%, #3498db 50%, #9b59b6 100%);
+  }
+
+  .hero-pattern {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+      radial-gradient(circle at 25% 25%, rgba(255,255,255,0.1) 0%, transparent 50%),
+      radial-gradient(circle at 75% 75%, rgba(255,255,255,0.1) 0%, transparent 50%);
+  }
+
+  .floating-elements {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+
+  .float-element {
+    position: absolute;
+    font-size: 24px;
+    opacity: 0.3;
+    animation: float 6s ease-in-out infinite;
+  }
+
+  .float-1 {
+    top: 20%;
+    left: 10%;
+    animation-delay: 0s;
+  }
+
+  .float-2 {
+    top: 60%;
+    right: 15%;
+    animation-delay: 2s;
+  }
+
+  .float-3 {
+    bottom: 30%;
+    left: 20%;
+    animation-delay: 4s;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-20px); }
+  }
+
+  .hero-content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: white;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.2);
+  }
+
+  .hero-icon-container {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    padding: 20px;
+    margin-bottom: 20px;
+    backdrop-filter: blur(10px);
+  }
+
+  .hero-main-icon {
+    font-size: 48px;
+    color: white;
+  }
+
+  .hero-title {
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 12px;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+  }
+
+  .hero-subtitle {
+    font-size: 16px;
+    margin-bottom: 24px;
+    opacity: 0.9;
+    line-height: 1.4;
+    max-width: 300px;
+  }
+
+  .hero-steps {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .step {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    font-size: 14px;
+  }
+
+  .step.active {
+    background: #3498db;
+    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.3);
+  }
+
+  .step-line {
+    width: 20px;
+    height: 2px;
+    background: rgba(255, 255, 255, 0.3);
+  }
+
+  /* Form Container */
+  .form-container {
+    padding: 0 16px 40px;
+  }
+
+  /* Form Sections */
+  .form-section {
+    background: white;
+    border-radius: 16px;
+    margin-bottom: 20px;
+    overflow: hidden;
+    box-shadow: 0 2px 16px rgba(0, 0, 0, 0.08);
+  }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    border-bottom: 1px solid #e9ecef;
+  }
+
+  .section-icon {
+    font-size: 24px;
+    color: #3498db;
+    margin-right: 16px;
+  }
+
+  .section-title h3 {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 600;
+    color: #2c3e50;
+  }
+
+  .section-title p {
+    margin: 4px 0 0 0;
+    font-size: 14px;
+    color: #6c757d;
+  }
+
+  .input-group {
+    padding: 20px;
+  }
+
+  .input-wrapper {
+    margin-bottom: 16px;
+  }
+
+  .input-wrapper:last-child {
+    margin-bottom: 0;
+  }
+
+  /* Custom Items */
+  .custom-item {
+    --background: white;
+    --border-color: #e9ecef;
+    --border-radius: 12px;
+    --padding-start: 16px;
+    --padding-end: 16px;
+    --min-height: 56px;
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    margin-bottom: 8px;
+    transition: all 0.3s ease;
+  }
+
+  .custom-item:hover {
+    --border-color: #3498db;
+    box-shadow: 0 2px 8px rgba(52, 152, 219, 0.1);
+  }
+
+  .custom-item.item-has-focus {
+    --border-color: #3498db;
+    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
+  }
+
+  .input-icon {
+    color: #6c757d;
+    margin-right: 8px;
+  }
+
+  .whatsapp-icon {
+    color: #25d366;
+  }
+
+  /* DateTime Group */
+  .datetime-group {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+
+  .custom-datetime {
+    --placeholder-color: #6c757d;
+  }
+
+  /* Toggle Item */
+  .toggle-item {
+    --min-height: 72px;
+  }
+
+  .toggle-item ion-label h3 {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 600;
+    color: #2c3e50;
+  }
+
+  .toggle-item ion-label p {
+    margin: 4px 0 0 0;
+    font-size: 14px;
+    color: #6c757d;
+  }
+
+  /* Rating Item */
+  .rating-item {
+    --min-height: 80px;
+  }
+
+  .rating-item ion-label h3 {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 600;
+    color: #2c3e50;
+  }
+
+  .rating-item ion-label p {
+    margin: 4px 0 0 0;
+    font-size: 14px;
+    color: #6c757d;
+  }
+
+  .rating-container {
+    width: 100%;
+    padding: 8px 0;
+  }
+
+  .rating-icon {
+    color: #ffc107;
+  }
+
+  /* Submit Section */
+  .submit-section {
+    background: white;
+    border-radius: 16px;
+    padding: 24px;
+    margin-top: 20px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  }
+
+  .progress-wrapper {
+    margin-bottom: 16px;
+  }
+
+  .loading-text {
+    text-align: center;
+    margin: 8px 0 0 0;
+    font-size: 14px;
+    color: #6c757d;
+  }
+
+  .submit-button {
+    --border-radius: 16px;
+    --padding-top: 16px;
+    --padding-bottom: 16px;
+    font-weight: 600;
+    font-size: 16px;
+    margin-bottom: 16px;
+  }
+
+  .terms-text {
+    text-align: center;
+  }
+
+  .terms-text p {
+    font-size: 12px;
+    color: #6c757d;
+    margin: 0;
+    line-height: 1.4;
+  }
+
+  /* Service and Barber Options */
+  .barber-option,
+  .service-option {
+    padding: 8px 0;
+  }
+
+  .barber-option strong,
+  .service-option strong {
+    display: block;
+    margin-bottom: 4px;
+    color: #2c3e50;
+  }
+
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .hero-title {
+      font-size: 28px;
+    }
+    
+    .hero-subtitle {
+      font-size: 14px;
+    }
+    
+    .datetime-group {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  /* Animations */
+  .form-section {
+    animation: slideInUp 0.6s ease;
+  }
+
+  @keyframes slideInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+</style>

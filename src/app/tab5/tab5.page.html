@@ -1,0 +1,53 @@
+<ion-header translucent>
+  <ion-toolbar color="dark">
+    <ion-title>Galeri & Ulasan</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen class="ion-padding">
+
+  <!-- 🖼️ Galeri -->
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Galeri Hasil Potong</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-grid>
+        <ion-row>
+          <ion-col *ngFor="let foto of fotoGaleri">
+            <div class="foto-wrapper">
+              <ion-card>
+                <img [src]="foto.url" />
+                <ion-card-content class="ion-text-center">
+                  <p>{{ foto.caption }}</p>
+                </ion-card-content>
+              </ion-card>
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- 💬 Ulasan -->
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Ulasan Pelanggan</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-list>
+        <ion-item *ngFor="let ulasan of ulasanList">
+          <ion-avatar slot="start">
+            <img src="assets/gaya4.jpg" />
+          </ion-avatar>
+          <ion-label>
+            <h3>{{ ulasan.nama }}</h3>
+            <p>"{{ ulasan.komentar }}"</p>
+            <ion-badge color="warning">⭐ {{ ulasan.rating }}/5</ion-badge>
+          </ion-label>
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+
+</ion-content>

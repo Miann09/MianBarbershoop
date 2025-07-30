@@ -1,0 +1,7 @@
+{
+  "name": "AppBarberMian",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

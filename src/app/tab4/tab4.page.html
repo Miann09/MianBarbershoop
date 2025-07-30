@@ -1,0 +1,64 @@
+<ion-header translucent>
+  <ion-toolbar color="dark">
+    <ion-title>Pengaturan Sistem</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen class="ion-padding">
+
+  <!-- Bagian Pengaturan -->
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Jam Operasional</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+
+      <!-- Jam Buka -->
+     <ion-input
+  type="time"
+  [value]="jamBuka"
+  (ionChange)="jamBuka = $event.detail.value ?? ''">
+</ion-input>
+
+<ion-input
+  type="time"
+  [value]="jamTutup"
+  (ionChange)="jamTutup = $event.detail.value ?? ''">
+</ion-input>
+
+      <!-- Hari Libur -->
+      <ion-item>
+        <ion-label position="stacked">Hari Libur</ion-label>
+        <ion-select [(ngModel)]="hariLibur" placeholder="Pilih hari">
+          <ion-select-option value="Senin">Senin</ion-select-option>
+          <ion-select-option value="Selasa">Selasa</ion-select-option>
+          <ion-select-option value="Rabu">Rabu</ion-select-option>
+          <ion-select-option value="Kamis">Kamis</ion-select-option>
+          <ion-select-option value="Jumat">Jumat</ion-select-option>
+          <ion-select-option value="Sabtu">Sabtu</ion-select-option>
+          <ion-select-option value="Minggu">Minggu</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <!-- Tombol Simpan -->
+      <ion-button expand="block" color="success" (click)="simpanPengaturan()">
+        Simpan Pengaturan
+      </ion-button>
+
+    </ion-card-content>
+  </ion-card>
+
+  <!-- Bagian Tentang Aplikasi -->
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Tentang Aplikasi</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <p><strong>Nama:</strong> Barbershop Mian</p>
+      <p><strong>Versi:</strong> 1.0.0</p>
+      <p><strong>Dikembangkan oleh:</strong> Miann Dolok Saribu</p>
+      <p><strong>Deskripsi:</strong> Aplikasi untuk mengelola booking, antrian, dan layanan pelanggan di Barbershop Mian dengan lebih cepat dan efisien.</p>
+    </ion-card-content>
+  </ion-card>
+
+</ion-content>

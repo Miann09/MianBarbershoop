@@ -1,0 +1,123 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="dark">
+    <ion-title>Data Booking</ion-title>
+    <ion-buttons slot="end">
+      <ion-button fill="clear" color="light" size="small" (click)="goToDashboard()">
+        <ion-icon name="home-outline" slot="icon-only"></ion-icon>
+      </ion-button>
+      <ion-button fill="clear" color="light" size="small" (click)="goToBooking()">
+        <ion-icon name="cut-outline" slot="icon-only"></ion-icon>
+      </ion-button>
+      <ion-button fill="clear" color="light" size="small" (click)="logout()">
+        <ion-icon name="log-out-outline" slot="icon-only"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen class="ion-padding">
+  <!-- Hero -->
+  <div class="hero-container">
+    <img src="https://source.unsplash.com/1200x600/?barber,haircut" class="hero-img" />
+    <div class="hero-overlay">
+      <h2>📋 Daftar Booking</h2>
+      <p>Kelola dan pantau semua booking pelanggan dengan mudah.</p>
+      <p *ngIf="isDarkMode" class="dark-mode-label">🌙 Dark Mode Aktif</p>
+    </div>
+  </div>
+
+  <!-- Info -->
+  <ion-chip color="dark" class="ion-margin-bottom">
+    <ion-label>Jumlah Booking: {{ filteredBookings.length }}</ion-label>
+  </ion-chip>
+
+  <!-- Pencarian -->
+  <ion-searchbar
+    placeholder="Cari nama/paket/telp..."
+    [(ngModel)]="searchTerm"
+    (ionInput)="filterBookings()"
+    showCancelButton="focus">
+  </ion-searchbar>
+
+  <!-- Tombol Aksi -->
+  <ion-grid class="ion-margin-top">
+    <ion-row>
+      <ion-col size="12" size-md="4">
+        <ion-button expand="block" color="dark" (click)="loadBookings()">
+          <ion-icon name="refresh-outline" slot="start"></ion-icon>
+          Refresh
+        </ion-button>
+      </ion-col>
+      <ion-col size="6" size-md="4">
+        <ion-button expand="block" color="success" (click)="exportToExcel()">
+          <ion-icon name="download-outline" slot="start"></ion-icon>
+          Excel
+        </ion-button>
+      </ion-col>
+      <ion-col size="6" size-md="4">
+        <ion-button expand="block" color="danger" (click)="exportToPDF()">
+          <ion-icon name="document-outline" slot="start"></ion-icon>
+          PDF
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <!-- Daftar Booking -->
+  <ng-container *ngIf="filteredBookings.length > 0; else kosong">
+    <ion-list>
+      <ion-card *ngFor="let b of filteredBookings" class="booking-card" [class.dark-card]="isDarkMode">
+        <ion-card-header>
+          <ion-card-title>{{ b.nama }}</ion-card-title>
+          <ion-card-subtitle>{{ b.tanggal }} - {{ b.jam }}</ion-card-subtitle>
+        </ion-card-header>
+        <ion-card-content>
+          <p><ion-icon name="cut-outline"></ion-icon> Paket: {{ b.paket }}</p>
+          <p><ion-icon name="people-outline"></ion-icon> Barber: {{ b.barber || '-' }}</p>
+          <p><ion-icon name="star-outline"></ion-icon> Rating: {{ b.rating || '-' }}/5</p>
+          <p><ion-icon name="call-outline"></ion-icon> Telp: {{ b.telepon }}</p>
+          <p><ion-icon name="mail-outline"></ion-icon> Email: {{ b.email || '-' }}</p>
+          <p><ion-icon name="logo-whatsapp"></ion-icon> WA: {{ b.whatsapp || '-' }}</p>
+          <p><ion-icon name="document-text-outline"></ion-icon> Catatan: {{ b.catatan || '-' }}</p>
+
+          <!-- Status -->
+          <p>
+            <ion-icon name="information-circle-outline"></ion-icon>
+            Status:
+            <strong [ngClass]="{
+              'status-menunggu': b.status === 'menunggu',
+              'status-diterima': b.status === 'diterima',
+              'status-ditolak': b.status === 'ditolak'
+            }">
+              {{ b.status || 'menunggu' }}
+            </strong>
+          </p>
+
+          <!-- Tombol ACC & Tolak -->
+          <ion-row *ngIf="(b.status || 'menunggu') === 'menunggu'" class="ion-padding-top">
+            <ion-col size="6">
+              <ion-button expand="block" color="success" (click)="accBooking(b)">
+                <ion-icon name="checkmark-circle-outline" slot="start"></ion-icon>
+                ACC
+              </ion-button>
+            </ion-col>
+            <ion-col size="6">
+              <ion-button expand="block" color="danger" (click)="tolakBooking(b)">
+                <ion-icon name="close-circle-outline" slot="start"></ion-icon>
+                Tolak
+              </ion-button>
+            </ion-col>
+          </ion-row>
+        </ion-card-content>
+      </ion-card>
+    </ion-list>
+  </ng-container>
+
+  <!-- Data Kosong -->
+  <ng-template #kosong>
+    <div class="ion-text-center ion-padding-top">
+      <ion-spinner name="crescent" color="medium"></ion-spinner>
+      <p>Belum ada data booking.</p>
+    </div>
+  </ng-template>
+</ion-content>

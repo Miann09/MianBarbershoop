@@ -1,0 +1,214 @@
+<ion-header translucent>
+  <ion-toolbar color="dark">
+    <ion-title class="animate__animated animate__fadeInDown">Dashboard Barbershop Mian</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="logout()" fill="clear" color="light">
+        <ion-icon name="log-out-outline" slot="icon-only"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen class="dashboard-content animate__animated animate__fadeInUp">
+
+  <!-- Hero Section -->
+  <section class="hero-section ion-padding animate__animated animate__zoomIn">
+    <div class="hero-background-image"></div>
+    <div class="hero-glow"></div>
+    <div class="hero-content">
+      <img src="assets/paket1.jpeg" class="hero-barber-img" alt="Barbershop Illustration" />
+      <ion-icon name="cut-outline" size="large" class="icon-hero pulse"></ion-icon>
+      <h1 class="hero-title">Selamat Datang 💼</h1>
+      <p class="hero-subtitle">Kelola booking & antrian dengan mudah dan profesional</p>
+      <ion-button expand="block" color="success" (click)="goToAddBooking()">
+        <ion-icon slot="start" name="add-circle-outline"></ion-icon>
+        Tambah Booking Baru
+      </ion-button>
+    </div>
+  </section>
+
+  <!-- Statistik -->
+  <ion-grid class="stats-grid ion-padding animate__animated animate__fadeIn">
+    <ion-row>
+      <ion-col size="4">
+        <ion-card class="stat-card bounce-in gradient-card">
+          <ion-card-header>
+            <ion-icon name="calendar-outline" class="stat-icon"></ion-icon>
+          </ion-card-header>
+          <ion-card-content>
+            <h2>{{ jumlahBookingHariIni }}</h2>
+            <p>Booking Hari Ini</p>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+
+      <ion-col size="4">
+        <ion-card class="stat-card bounce-in-delay gradient-card">
+          <ion-card-header>
+            <ion-icon name="people-outline" class="stat-icon"></ion-icon>
+          </ion-card-header>
+          <ion-card-content>
+            <h2>{{ jumlahAntrian }}</h2>
+            <p>Antrian Aktif</p>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+
+      <ion-col size="4">
+        <ion-card class="stat-card bounce-in-delay2 gradient-card">
+          <ion-card-header>
+            <ion-icon name="person-outline" class="stat-icon"></ion-icon>
+          </ion-card-header>
+          <ion-card-content>
+            <h2>{{ jumlahPelanggan }}</h2>
+            <p>Total Pelanggan</p>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <!-- Aksi Cepat -->
+  <div class="quick-actions ion-padding animate__animated animate__fadeInUp">
+    <h3 class="section-title">Aksi Cepat</h3>
+    <ion-grid>
+      <ion-row>
+        <ion-col size="6">
+          <ion-button expand="block" color="primary" (click)="goToAddBooking()">
+            <ion-icon slot="start" name="calendar-outline"></ion-icon>
+            Booking Baru
+          </ion-button>
+        </ion-col>
+        <ion-col size="6">
+          <ion-button expand="block" color="medium" (click)="goToBookingData()">
+            <ion-icon slot="start" name="list-outline"></ion-icon>
+            Data Booking
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+
+</ion-content>
+
+<!-- Style -->
+<style>
+  @import url("https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css");
+
+  .dashboard-content {
+    --background: transparent;
+    background: linear-gradient(to bottom right, #2c3e50, #3498db);
+    color: #fff;
+    min-height: 100%;
+    position: relative;
+  }
+
+  .hero-section {
+    text-align: center;
+    position: relative;
+    padding-top: 30px;
+  }
+
+  .hero-background-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('https://i.ibb.co/h9D5Wwv/barbershop-bg-demo.jpg');
+    background-size: cover;
+    background-position: center;
+    opacity: 0.25;
+    z-index: 0;
+  }
+
+  .hero-glow {
+    position: absolute;
+    top: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 200px;
+    height: 200px;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.2), transparent 70%);
+    border-radius: 50%;
+    z-index: 1;
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+  }
+
+  .hero-barber-img {
+    width: 500px;
+    height: auto;
+    margin-bottom: 15px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  }
+
+  .icon-hero {
+    font-size: 60px;
+    color: #ffffff;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+  }
+
+  .hero-title {
+    margin: 10px 0 5px;
+    font-weight: bold;
+    font-size: 26px;
+    color: #fff;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  }
+
+  .hero-subtitle {
+    font-size: 16px;
+    color: #f0f0f0;
+    margin-bottom: 20px;
+  }
+
+  .stat-card {
+    text-align: center;
+    border-radius: 16px;
+    color: #fff;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+    animation: fadeInUp 1s ease forwards;
+  }
+
+  .gradient-card {
+    background: linear-gradient(to right, #00c6ff, #0072ff);
+  }
+
+  .stat-icon {
+    font-size: 36px;
+    color: #fff;
+  }
+
+  .section-title {
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #ffffff;
+  }
+
+  .pulse {
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+    100% { transform: scale(1); }
+  }
+
+  .bounce-in {
+    animation: bounceIn 0.9s ease forwards;
+  }
+
+  .bounce-in-delay {
+    animation: bounceIn 0.9s ease 0.3s forwards;
+  }
+
+  .bounce-in-delay2 {
+    animation: bounceIn 0.9s ease 0.6s forwards;
+  }
+</style>
